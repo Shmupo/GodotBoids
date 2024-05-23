@@ -1,0 +1,38 @@
+Info -
+This V3 implementation utilizes a different SpatialHashGrid.
+This implementation makes us of Godot's multimeshes, which provide a high-performance drawing of a single mesh many times using GPU intancing, reducing the API overhead.
+The spatial grid in this implementation is also much better and simpler than that of BoidsV2.
+The drawback of using a spatial grid, however, is that in some configurations, boids may stutter around grid cube borders, making them noticable.
+Multimeshes, however, are limited by the Godot engine, such that the multimesh considers all the boids as a single object, and as a result, will not recieve any lighting.
+
+SpatialGridV2 - 
+When configuring the size of each grid cube in the spatial grid, larger sizes result in boids generating larger clusters, sometimes with only one large cluster.
+Smaller grid cube sizes create behaviours more attune to what you would expect: many boids clusters at once.
+The size of the grid cube also affects which boids will be considered as neighbors.
+Boids also tend to gather around the grid borders as they suddenly change neighbor boids.
+For the separation force, however, boids within the same cube are considered neighbors ONLY if the squared distance between the neighbor boid and current boid are within the separationRangeSquared variable.
+NOTE : the reason to use the squared distance is because GODOT claims to calculate the squared value of the distance between two Vector3's faster than the non-squared distance.
+
+Variables - 
+The bound variables are 1/2 the actual length of each x, y, and z side of the background mesh
+The bound variables are used by the push force to force boids into the bounds, as well as the spatial grid to generate the grid cubes
+Spatial grid size the is the length of each grid in the spatial grid
+
+Changing the number of boids spawned - 
+When configuring how many boids to generate:
+	1. select the BoidManagerV1 (MultiMeshInstance3D Node)
+	2. inside the 3D scene window, on the toolbar at the top, there should be a selection for "Multimesh," next to "Transform" and "View"
+	3. Select "Multimesh" and the in the dropdown, select "Populate Surface"
+	4. A window should pop up. Change these settings:
+		a. in "Target Surface," click on the two dots at the end of the input box and choose the "BackgroundMesh" node
+		b. in "Source Mesh," click on the two dots at the end of the input box and choose the "BoidMesh" node
+		c. in "Amount," enter the number of boids you wish to spawn
+	5. Click "Populate" at the bottom left, then you should see the boids populate within the "BackgroundMesh" node
+
+Summary - 
+This version takes advantage of the capabilities of the Godot Engine.
+It performs better than V1 in most cases.
+Runs at my computers max FPS (165) while simulating 1,000 boids.
+Runs at an average of 100 FPS while simulating 2,000 boids.
+Boid initialization is insignificantly noticable.
+This version is great.

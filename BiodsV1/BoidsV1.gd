@@ -1,4 +1,4 @@
-class_name Boid
+class_name BoidV1
 extends Sprite3D
 
 # neighbors boids array
@@ -6,8 +6,9 @@ var neighborBoids: Array = []
 
 # connect area3D exit and enter signals for neighbor assignment
 func _ready():
-	get_child(0).area_entered.connect(areaEnter)
-	get_child(0).area_exited.connect(areaExit)
+	if get_child(0) != null:
+		get_child(0).area_entered.connect(areaEnter)
+		get_child(0).area_exited.connect(areaExit)
 
 # add boid as neighbor if enter area3D
 func areaEnter(area: Area3D) -> void:

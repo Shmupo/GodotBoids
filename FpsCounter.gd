@@ -1,3 +1,4 @@
+class_name FPSCounter
 extends Label
 
 func _ready():

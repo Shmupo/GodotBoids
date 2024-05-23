@@ -1,0 +1,24 @@
+Info -
+Boids are represented using a Sprite3D, Area3D, and SphereCollisionShape. The Sprite3D component is the parent component and has the BoidsV1 script attached.
+The Area3D detects when other boids exit or leave the SphereCollisionShape and stores or removes the boids as a neighbor via signaling.
+
+BoidConfigV1 -
+Settings, such as the sphere radius, box borders, and numOfBoids, among other settings, are read from BoidConfigV1 and can be changed from there.
+Boid forces, such as alignment, cohesion, and separation, are adjustable using values in BoidConfigV1.
+The range at which a neighbor boid is used to apply the separation force is BoidConfigV1.separationRangeSquared, which is compared to the distance squared of the neighbor boid relative to the current boid.
+
+minSpeed and maxSpeed limit the min and max normalized velocities of boids.
+When a boid reaches the border, a push force called turnFactor is added to an axis (x, y, or z) velocity of the boid to push it back into the box.
+
+xbound, ybound, zbound define the box in which the boids will be pushed into if they reach the borders. The actual size of the box is 2x larger that the bounds, i.e. xbound = 50 means the box x length ranges from -50 to 50 on the x axis.
+
+sphereRadius: radius of SphereCollisionShape of each boid
+numBoids: number of boids to spawn
+boidImg: Texture2D image to use to represent each boid
+boidScale: scale of the boid image
+
+Summary - 
+Rotation of boids is disabled for easier visual identification.
+This implementation does well.
+This version takes a considerable amount of time initializing 1,000 boids (around 4ish seconds).
+Runs at 50 average fps when simulating 1,000 boids. Lowest at 40 fps.

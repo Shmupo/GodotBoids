@@ -1,0 +1,27 @@
+Info -
+Boids are represented using a only a Sprite3D attatched to the BoidsV2 script.
+Boids grab neighbor boids via the spatial hash grid.
+Neighbor boids are grabbed via the spatial grid every process cycle.	
+The spatial grid first clears the spatial grid of boids. Then the boids are assigned a grid coordinate based on their global_position. Then, average values (heading and position) of all neighbor boids are stored in another grid specifically for these values.
+Boids grab average values from the spatial grid, rather than calculating them each individually.
+
+BoidsV2 calculate forces similarily to BoidsV1, except in the way it obtains information about neighbor boids.
+
+BoidConfigV2 -
+Mostly the same config variables as BoidConfigV1, except for a few exceptions:
+REMOVED separationRangeSquared as neighbors for the separation calculation are grabbed via the spatial grid neighboring cubes, or current cube (depending on configuration)
+REMOVED sphereRadius as this does not use the SphereCollisionShape
+spatialGridSize: the edge side of each cube within the spatial grid
+
+Summary - 
+Rotation of boids is disabled for easier visual identification.
+This implementation is significantly worse than V1 under certain conditions, and matches V1 under certain conditions, such as larger grouping of boids.
+This spatial grid is worse than BoidsV1 for obtaining neighbor boids, which uses Area3D for finding neighbors.
+It can run 1,000 boids at around 24 average fps on my pc with the current BoidConfigV2 settings.
+FPS varies depending on different config settings.
+This version, however, creates boids much faster as they do not require much initialization compared to BoidsV1.
+
+The likely cause of this worsened performance is a sub-optimal implementation of the spatial hash grid.
+Each process, the grid loops through all boids many times over to calculate average values and place boids in the grid.
+
+This implementation is worse that BoidsV1, but does initializes boids fast.

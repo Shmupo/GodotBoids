@@ -1,12 +1,14 @@
-class_name BoidGenerator
+class_name BoidGeneratorV1
 extends Node
+
+var boids: Array
 
 # create boids on node ready
 func _ready():
-	generateNBoids()
+	generateNBoidsV1()
 	
 # randomize boid placement within bounds upon creation
-func placeBoidRandInBounds(boid: Boid) -> void:
+func placeBoidRandInBounds(boid: BoidV1) -> void:
 	boid.position = Vector3(
 		randf_range(-BoidConfigV1.xBound, BoidConfigV1.xBound),
 		randf_range(-BoidConfigV1.yBound, BoidConfigV1.yBound),
@@ -14,7 +16,7 @@ func placeBoidRandInBounds(boid: Boid) -> void:
 		)
 		
 # randomize boid speed upon creation
-func setBoidRandSpeed(boid: Boid) -> void:
+func setBoidRandSpeed(boid: BoidV1) -> void:
 	boid.velocity = Vector3(
 		randf_range(-BoidConfigV1.maxSpeed, BoidConfigV1.maxSpeed),
 		randf_range(-BoidConfigV1.maxSpeed, BoidConfigV1.maxSpeed),
@@ -22,9 +24,9 @@ func setBoidRandSpeed(boid: Boid) -> void:
 	)
 
 # create boid and it's components one at a time, then randomize placement and velocity
-func generateNBoids() -> void:
+func generateNBoidsV1() -> void:
 	for x in BoidConfigV1.numBoids:
-		var boid: Boid = createBoid()
+		var boid: BoidV1 = createBoidV1()
 		var area3d: Area3D = createArea3D()
 		var collisionShape: CollisionShape3D = createSphereCollision()
 		boid.add_child(area3d)
@@ -33,10 +35,12 @@ func generateNBoids() -> void:
 		
 		placeBoidRandInBounds(boid)
 		setBoidRandSpeed(boid)
+		
+		boids.append(boid)
 
 # create boid sprite3D object w/script
-func createBoid() -> Boid:
-	var boid: Boid = Boid.new()
+func createBoidV1() -> BoidV1:
+	var boid: BoidV1 = BoidV1.new()
 	boid.texture = BoidConfigV1.boidImg
 	boid.scale = BoidConfigV1.boidScale
 	return boid

@@ -1,22 +1,16 @@
-; Engine configuration file.
-; It's best edited using the editor UI and not directly,
-; since the parameters that go here are not all obvious.
-;
-; Format:
-;   [section] ; section goes between []
-;   param=value ; assign values to parameters
-
 config_version=5
 
 [application]
 
-config/name="RTXBoid"
+config/name="3DBoidCluster"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 BoidConfigV1="*res://BiodsV1/BoidConfigV1.gd"
+BoidConfigV2="*res://BoidsV2/BoidConfigV2.gd"
+BoidConfigV3="*res://BoidsV3/BoidConfigV3.gd"
 
 [rendering]
 
