@@ -1,6 +1,18 @@
 # GodotBoids # Godot Engine
 Three versions of simulating boid clusters using Godot Engine 4.2
 
+HOW TO USE:
+  Godot Engine 4.2 will be required.
+  Place all files as they are into a folder.
+  Open the godot project manager and press import.
+  Once imported, you should get an option to run the project.
+
+  Different Scenes -
+    Each version of the boids are split into different scenes of simlar name within each BoidsV# folder.
+    Simply run these scenes.
+    To change configurations, such as force modifiers and number of boids, refer to the InfoV#.txt and change the corresponding values within the BoidConfigV#.gd.
+    Note: For BoidV3, changing the number of boids is different - see InfoV3.txt.
+
 The naming of components are based of the iteration number, not what version of Boids they are filed in.
 Example: SpatialGridV1 is located within the BoidsV2 file because it is the first iteration of the SpatialGrid.
 
