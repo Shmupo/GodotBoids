@@ -1,4 +1,4 @@
-# Godot Engine Boid Cluster
+# Godot Engine 3D Boid Clusters
 Three versions of simulating boid clusters using Godot Engine 4.2
 
 ## HOW TO USE:
