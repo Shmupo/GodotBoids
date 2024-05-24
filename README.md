@@ -20,6 +20,7 @@ Included in each scene is a simple Label node that displays the fps grabbed dire
 
 ## V1 - Area3D
 ![](https://github.com/Shmupo/GodotBoids/blob/main/BoidV1.gif)
+
 This version uses a Sprite3D node, and Area3D, and SphereCollisionShape.
 Neighbor detection is done via signaling by the Area3D.
 When a node enters the SphereCollisionShape, it is added to the boid's array of neighbor boids to perform calculations.
@@ -29,6 +30,7 @@ See BoidsV1/InfoV1.text for more info and how to play with the settings.
 
 ## V2 - Spatial Grid
 ![](https://github.com/Shmupo/GodotBoids/blob/main/BoidV2.gif)
+
 This version uses a spatial grid to obtain neighbor boids, rather than an Area3D.
 Boids only consist of a single Sprite3D, leading to fast initialization.
 The spatial grid, however is not optimal and actually leads to worse performance than V1 in some cases.
@@ -36,6 +38,7 @@ See BoidsV2/InfoV2.txt for more info and how to play with the settings.
 
 ## V3 - Spatial Hash Grid + Multimesh instancing
 ![](https://github.com/Shmupo/GodotBoids/blob/main/BoidV3.gif)
+
 This version effectively utilizes the capabilities of Godot, as well as a more optimized Spatial Hash Grid.
 This can easily run hundreds of boids (2k at 100fps on my computer).
 Boids are drawn using a multimesh, effectively utilizing the GPU much more efficiently.
