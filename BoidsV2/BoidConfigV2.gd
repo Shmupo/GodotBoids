@@ -19,11 +19,11 @@ var turnFactor: float = 2
 
 ## Boid Generation
 # Area3D
-var numBoids: int = 1000
+var numBoids: int = 250
 var boidImg: Texture2D = preload("res://BoidArrow.png")
 var boidScale: Vector3 = Vector3(3, 3, 3)
 
 ## Spatial Grid
 # size of each 3d cube in the grid
 # try to make this a factor of the bounds or else there may be unexpected results
-var spatialGridSize: int = 10
+var spatialGridSize: int = 5
